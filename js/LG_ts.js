@@ -478,8 +478,8 @@ async function QAsendMessage(q_id,ifkb) {
         const userMessage = document.createElement('div');
         userMessage.className = 'message user-message';
         userMessage.innerHTML = `
-            <div class="message-content" style="background-color: transparent;">
-                <div class="message-text" style="color:black">${messageText}</div>
+            <div class="message-content">
+                <div class="message-text" style="color:white">${messageText}</div>
             </div>
             <img src="images/user.png" alt="User Avatar" class="avatar">
         `;
@@ -522,7 +522,7 @@ async function QAsendMessage(q_id,ifkb) {
             
             botMessage.innerHTML = `
                 <img src="images/robot.png" alt="Bot Avatar" class="avatar">
-                <div class="message-content" style="background-color: transparent;">
+                <div class="message-content">
                     <div class="message-text"></div>
                     <div class="rag-documents" style="display:none; margin-top: 10px;"></div>
                     <i class="fa-regular fa-circle-play" id="play_${uniqueId}" style="display:none;" onclick="bf_vedio('${uniqueId}', '')"></i>
@@ -688,8 +688,8 @@ async function freesendMessage() {
         const userMessage = document.createElement('div');
         userMessage.className = 'message user-message';
         userMessage.innerHTML = `
-            <div class="message-content" style="background-color: transparent;">
-                <div class="message-text" style="color:black">${messageText}</div>
+            <div class="message-content">
+                <div class="message-text" style="color:white">${messageText}</div>
             </div>
             <img src="images/user.png" alt="User Avatar" class="avatar">
         `;
@@ -709,7 +709,7 @@ async function freesendMessage() {
             
             botMessage.innerHTML = `
                 <img src="images/robot.png" alt="Bot Avatar" class="avatar">
-                <div class="message-content" style="background-color: transparent;">
+                <div class="message-content">
                     <div class="message-text"></div>
                     <i class="fa-regular fa-circle-play" id="play_${uniqueId}" style="display:none;" onclick="bf_vedio('${uniqueId}', '')"></i>
                     <i class="fa-regular fa-circle-pause" style="display:none" id="pause_${uniqueId}" onclick="zt_vedio('${uniqueId}')"></i>
@@ -785,7 +785,7 @@ async function freesendMessage() {
             errorMessage.className = 'message bot-message';
             errorMessage.innerHTML = `
                 <img src="images/robot.png" alt="Bot Avatar" class="avatar">
-                <div class="message-content" style="background-color: transparent;">
+                <div class="message-content">
                     <div class="message-text" style="color:red">请求失败，请稍后重试</div>
                 </div>
             `;
@@ -1442,7 +1442,7 @@ function getComplaintContent() {
                     // 获取投诉内容和处理状态
                     const complaintContent = complaintData.complaint_content || '无投诉内容';
                     const handlingStatus = complaintData.handling_status || '无处理方案';
-                    const AI_analysis = complaintData.ai_analysis || '无AI分析';
+                    const AI_analysis = complaintData.ai_analysis || '暂无AI分析';
                     
                     // 将投诉内容显示在id为question的元素中
                     const questionElement = document.getElementById('question');
@@ -1462,7 +1462,8 @@ function getComplaintContent() {
                     
                     const questionDisplay = document.getElementById('text-display');
                     if (questionDisplay) {
-                        questionDisplay.innerText = AI_analysis;
+                        // 需要过滤掉{}
+                        questionDisplay.innerText = AI_analysis.replace(/[{}]/g, '');
                     } else {
                         console.error('未找到id为question_display的元素');
                     }
@@ -1599,6 +1600,14 @@ window.onload = function () {
         });
     setRandomIdInCookie();
     getChatId();
+    
+    // 添加窗口大小变化监听器，确保雷达图在容器大小变化时正确调整
+    window.addEventListener('resize', function() {
+        let myChart_ts = echarts.getInstanceByDom(document.getElementById('question-display'));
+        if (myChart_ts) {
+            myChart_ts.resize();
+        }
+    });
     
     // 强制重置并添加Q按钮事件监听
     const qaButton = document.getElementById("qa-button");

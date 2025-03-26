@@ -55,8 +55,8 @@ body {
 
 .grid-item3, .grid-item4, .grid-item6 {
   background-color: #f4f4f4;
-  border: 1px solid #ccc;
-  padding: 15px;
+  /* border: 1px solid #ccc; */
+  /* padding: 15px; */
   overflow-y: auto;
 }
 
@@ -76,6 +76,9 @@ body {
 
 .grid-item3 {
   flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 使用整个高度 */
 }
 
 .grid-item4 {
@@ -173,9 +176,12 @@ body {
 }
 
 .text-container {
-  margin-top: 10px;
+  /* margin-top: 30px; */
   font-size: 14px;
   line-height: 1.6;
+  overflow-y: auto; /* 允许在容器内滚动 */
+  padding: 10px 20px 10px 20px; /* 添加内边距，确保文字不会贴边 */
+  flex-grow: 1; /* 占据剩余空间 */
 }
 
 .text-container .text {
@@ -302,7 +308,7 @@ body {
 .chat-messages1 {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
+  /* padding: 10px; */
   margin-bottom: 10px;
   height: calc(100% - 100px); /* 减去输入框和其他元素的高度 */
   display: flex;
@@ -323,7 +329,7 @@ body {
 
 #chat-input {
   flex: 1;
-  min-height: 36px;
+  /* min-height: 36px; */
   border-radius: 4px;
   font-size: 14px;
   background-color: #fff;
@@ -449,7 +455,7 @@ body {
 .chat-messages1 {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
+  /* padding: 10px; */
   margin-bottom: 10px;
   height: calc(100% - 100px); /* 减去输入框和其他元素的高度 */
   display: flex;
@@ -460,7 +466,7 @@ body {
 .user-message {
   display: flex;
   justify-content: flex-end; /* 让内容向右对齐 */
-  margin: 10px 0;
+  margin: 5px 0;
   width: 100%; /* 确保消息区域占满宽度 */
 }
 
@@ -488,6 +494,7 @@ body {
 }
 
 .bot-message .message-content {
+  background-color: #f0f0f0;
   padding: 10px;
   border-radius: 10px;
   max-width: 90%;
@@ -781,7 +788,7 @@ body {
 }
 
 .message {
-    margin: 10px 0;
+    margin: 5px 0;
     display: flex;
     align-items: flex-start;
     max-width: 80%;
@@ -789,25 +796,29 @@ body {
 
 .user-message {
     margin-left: auto;
-    background-color: #1FDE82;
     color: white;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
     border-radius: 15px 15px 0 15px;
 }
 
 .bot-message {
     margin-right: auto;
-    background-color: #f0f0f0;
     color: #333;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
     border-radius: 15px 15px 15px 0;
 }
 
 .chat-messages1 {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    /* padding: 20px; */
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.question-container-ts {
+  width: 100%;
+  height: 300px; /* 设置图表容器固定高度 */
+  flex-shrink: 0; /* 防止雷达图被压缩 */
 }

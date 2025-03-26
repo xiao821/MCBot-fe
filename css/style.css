@@ -9209,7 +9209,7 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 .text-container {
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     cursor: pointer;
 	display: block;
 	/* height: 200px;  */
@@ -9435,7 +9435,7 @@ h5 {
 
 .chat-messages1 {
     flex: 3;
-    padding: 10px;
+    /* padding: 10px; */
     overflow-y: auto;
     display: flex;
     height: 86%;
@@ -9508,7 +9508,7 @@ h5 {
 	
 	.chat-messages1 {
 		flex: 3;
-		padding: 10px;
+		/* padding: 10px; */
 		overflow-y: auto;
 		display: flex;
 		height: 86%;
