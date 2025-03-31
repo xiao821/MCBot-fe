@@ -6,6 +6,7 @@
     <title>test_demo</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/LG_ts.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
   <style>
     .grid-item3 {
@@ -184,8 +185,8 @@
           <div class="chat-input">
             <!-- 输入框和按钮 -->
             <div class="input-button-container">
-              <button id="qa-button" style="background-color: #1FDE82;">Q</button>
-              <button id="data-button" style="display: none;">Q</button>
+              <!-- <button id="qa-button" style="background-color: #1FDE82;">Q</button>
+              <button id="data-button" style="display: none;">Q</button> -->
               <div
                 id="chat-input"
                 contenteditable="true"
@@ -199,9 +200,9 @@
                   cursor: text;
                 "
               ></div>
-              <button id="record_button" style="background-color: #1FDE82;">录</button>
+              <button id="record_button" style="background-color: #888888;"><i class="fas fa-microphone"></i></button>
               <button id="send-button" onclick="generateQuestion1()">发送</button>
-              <button id="send-button_QA" onclick="freesendMessage()">发送QA</button>
+              <button id="send-button_QA" onclick="freesendMessage()">发送</button>
             </div>
           </div>
         </div>
@@ -221,7 +222,7 @@
       </div>
 
       <!-- QA 问答  下拉框默认题目 -->
-      <div class="message-content" id="qa_messages">
+      <!-- <div class="message-content" id="qa_messages">
         <div
           class="message-text1 mes"
           onclick="selectMessage_test('在深圳市退休人员通过转诊到市外医疗机构，发生的医疗费用可以通过哪些方式进行报销申请？')"
@@ -240,9 +241,9 @@
         >
         对于参加了少儿医保的孩子，扣费账号是如何确定的？
         </div>
-      </div>
+      </div> -->
       <!-- 数据问答 下拉框默认题目 -->
-      <div class="message-content" id="data_messages" style="display: none;">
+      <!-- <div class="message-content" id="data_messages" style="display: none;">
         <div
           class="message-text1 mes"
           onclick="selectMessage_test('3799这道题的答对人数和答错人数。')"
@@ -268,7 +269,7 @@
           得分前五的考试是哪几个？
         </div>
     
-      </div>
+      </div> -->
 
     </div>
     <script src="js/core.min.js"></script>

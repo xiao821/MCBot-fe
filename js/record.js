@@ -20,22 +20,20 @@ document.getElementById('record_button').addEventListener('click', async () => {
             };
             mediaRecorder.start();
 
-            document.getElementById('record_button').style.backgroundColor = "red";
+            // 将按钮变为红色，表示正在录音
+            button.style.backgroundColor = "red";
             isRecording = true;
-            button.innerText = "停";
-            // document.getElementById('result').innerText = "录音中...";
+            // 不再更改文本，因为现在使用的是图标
         } catch (error) {
             console.error("无法访问麦克风:", error);
-            document.getElementById('result').innerText = "无法访问麦克风，请检查权限。";
+            // 如果有错误，可以添加提示
         }
     } else {
         if (mediaRecorder && mediaRecorder.state === 'recording') {
             mediaRecorder.stop();
             isRecording = false;
-            button.innerText = "录";
-            document.getElementById('record_button').style.backgroundColor = "#007bff";
-
-            // document.getElementById('result').innerText = "录音已停止，正在上传...";
+            // 将按钮变回灰色，表示录音停止
+            button.style.backgroundColor = "#888888";
         }
     }
 });

@@ -393,32 +393,32 @@ async function sendMessagedemo() {
                             isStep8Active = true;
                         }
                     } else if (line.startsWith("data:")) {
-                        const content = line.slice(5).trim();
-                        if (!content) continue;
+                        const data = line.slice(5).trim();
+                        if (!data) continue;
 
                         // 更新 step8Div 和机器人消息内容的逻辑
                         if (isStep8Active && currentEvent === "update") {
-                            step8Content += content;
+                            step8Content += data;
                             if (step8Div) {
                                 step8Div.classList.remove('has-content');
                                 step8Div.innerHTML = step8Content;
                             }
-                            dataContent += content;
+                            dataContent += data;
                             updateContent(dataContent);
                             dataContent = '';
                         } else if (currentEvent?.startsWith('step')) {
                             const stepNumber = currentEvent.replace('step', '');
-                            const stepTitle = `Step ${stepNumber}: ${content}`;
+                            const stepTitle = `Step ${stepNumber}: ${data}`;
                             updateContent(stepTitle, true);
                         } else if (currentEvent === "update") {
-                            dataContent += content;
-                            if (content.endsWith('.') || content.endsWith('。') || dataContent.length > 50) {
-                                updateContent(dataContent);
+                            dataContent += data;
+                            if (data.endsWith('.') || data.endsWith('。') || dataContent.length > 50) {
+                                updateContent(data);
                                 dataContent = '';
                             }
                         } else if (currentEvent === "sqldata") {
                             // 处理 sqldata 事件
-                            this.echartsData = content; // 假设数据是 JSON 格式
+                            this.echartsData = data; // 假设数据是 JSON 格式
                             console.log('echartsData:', this.echartsData);
                             // 创建 CustomEvent 对象
                             const event = new CustomEvent('sqldataReceived', {
@@ -1139,7 +1139,7 @@ async function generateQuestion() {
                 
                 if (line.startsWith('data:')) {
                     const data = line.slice(5).trim();
-                    if (data && data !== '###' && !data.startsWith('{')) {
+                    if (data && !data.startsWith('{')) {
                         currentMarkdown += data;
                     }
                 }
@@ -1282,7 +1282,7 @@ async function generateQuestion1() {
                 
                 if (line.startsWith('data:')) {
                     const data = line.slice(5).trim();
-                    if (data && data !== '###' && !data.startsWith('{')) {
+                    if (data && !data.startsWith('{')) {
                         currentMarkdown += data;
                     }
                 }
@@ -1609,47 +1609,47 @@ window.onload = function () {
         }
     });
     
-    // 强制重置并添加Q按钮事件监听
-    const qaButton = document.getElementById("qa-button");
-    const qaMessages = document.getElementById("qa_messages");
-    if (qaButton && qaMessages) {
-        // 首先移除所有已有的点击事件监听器
-        qaButton.replaceWith(qaButton.cloneNode(true));
-        // 重新获取克隆后的按钮
-        const newQaButton = document.getElementById("qa-button");
+    // // 强制重置并添加Q按钮事件监听
+    // const qaButton = document.getElementById("qa-button");
+    // const qaMessages = document.getElementById("qa_messages");
+    // if (qaButton && qaMessages) {
+    //     // 首先移除所有已有的点击事件监听器
+    //     qaButton.replaceWith(qaButton.cloneNode(true));
+    //     // 重新获取克隆后的按钮
+    //     const newQaButton = document.getElementById("qa-button");
         
-        console.log('重新注册Q按钮事件 - window.onload');
-        newQaButton.addEventListener("click", function(event) {
-            console.log('点击Q按钮 - window.onload');
-            event.stopPropagation();
-            if (!qaMessages.classList.contains("show")) {
-                qaMessages.classList.add("show");
-            } else {
-                qaMessages.classList.remove("show");
-            }
-        });
+    //     console.log('重新注册Q按钮事件 - window.onload');
+    //     newQaButton.addEventListener("click", function(event) {
+    //         console.log('点击Q按钮 - window.onload');
+    //         event.stopPropagation();
+    //         if (!qaMessages.classList.contains("show")) {
+    //             qaMessages.classList.add("show");
+    //         } else {
+    //             qaMessages.classList.remove("show");
+    //         }
+    //     });
         
-        // 阻止点击qa_messages内部时关闭弹框
-        qaMessages.addEventListener("click", function(event) {
-            event.stopPropagation();
-        });
-    }
+    //     // 阻止点击qa_messages内部时关闭弹框
+    //     qaMessages.addEventListener("click", function(event) {
+    //         event.stopPropagation();
+    //     });
+    // }
     
-    // 点击页面其他区域时关闭弹框
-    document.addEventListener("click", function(event) {
-        // 关闭历史记录弹框
-        const historyModal = document.getElementById("historyModal");
-        if (historyModal.classList.contains("active") && event.target !== document.getElementById("history")) {
-            historyModal.classList.remove("active");
-        }
+    // // 点击页面其他区域时关闭弹框
+    // document.addEventListener("click", function(event) {
+    //     // 关闭历史记录弹框
+    //     const historyModal = document.getElementById("historyModal");
+    //     if (historyModal.classList.contains("active") && event.target !== document.getElementById("history")) {
+    //         historyModal.classList.remove("active");
+    //     }
         
-        // 关闭QA问答弹框
-        const qaMessages = document.getElementById("qa_messages");
-        const newQaButton = document.getElementById("qa-button");
-        if (qaMessages && qaMessages.classList.contains("show") && event.target !== newQaButton && !qaMessages.contains(event.target)) {
-            qaMessages.classList.remove("show");
-        }
-    });
+    //     // 关闭QA问答弹框
+    //     const qaMessages = document.getElementById("qa_messages");
+    //     const newQaButton = document.getElementById("qa-button");
+    //     if (qaMessages && qaMessages.classList.contains("show") && event.target !== newQaButton && !qaMessages.contains(event.target)) {
+    //         qaMessages.classList.remove("show");
+    //     }
+    // });
 
     localStorage.setItem('hasSentMessage', 'false')
     displayRandomTexts();
