@@ -32,7 +32,7 @@ body {
   flex: 1; /* 占据左列2/3高度 */
   background-color: #f4f4f4;
   border: 1px solid #ccc;
-  padding: 15px;
+  padding: 10px;
   overflow-y: auto;
 }
 
@@ -286,7 +286,7 @@ body {
 
 /* 右边聊天对话框 */
 .chat-container {
-  flex: 1;
+  flex: 1.1;
   display: flex;
   flex-direction: column;
   height: 100vh; /* 设置为视口高度 */
@@ -691,7 +691,7 @@ body {
 .name-selector {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   flex: 1; /* 让姓名标签选择器占满可用空间 */
 }
 
@@ -821,4 +821,12 @@ body {
   width: 100%;
   height: 300px; /* 设置图表容器固定高度 */
   flex-shrink: 0; /* 防止雷达图被压缩 */
+}
+
+.message-text h2{
+  font-size: 20px;
+  font-weight: bold;
+}
+.message-text ul{
+  margin-left: 0;
 }

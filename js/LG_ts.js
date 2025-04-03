@@ -760,17 +760,33 @@ async function freesendMessage() {
                 for (let i = 0; i < lines.length; i++) {
                     const line = lines[i].trim();
                     if (line.startsWith('data:')) {
-                        const data = line.slice(5).trim();
-                        if (data && !data.includes('Access-Control-Allow')) {
-                            // 累积AI消息
-                            accumulatedMessage += data;
-                            // 使用 markdown-it 渲染内容
-                            const htmlContent = this.md.render(accumulatedMessage);
-                            // 更新机器人消息内容
-                            messageTextContainer.innerHTML = htmlContent;
-                            // 滚动到底部
-                            const chatMessages = document.getElementById('chat-messages');
-                            chatMessages.scrollTop = chatMessages.scrollHeight;
+                        try {
+                            // 提取data:后面的内容
+                            const dataContent = line.slice(5).trim();
+                            
+                            // 检查是否包含JSON数据
+                            if (dataContent && !dataContent.includes('Access-Control-Allow')) {
+                                // 尝试解析JSON
+                                const jsonData = JSON.parse(dataContent.replace(/'/g, '"'));
+                                
+                                // 检查是否有content字段
+                                if (jsonData && jsonData.content !== undefined) {
+                                    // 只累积content部分
+                                    accumulatedMessage += jsonData.content;
+                                    
+                                    // 使用 markdown-it 渲染内容
+                                    const htmlContent = this.md.render(accumulatedMessage);
+                                    
+                                    // 更新机器人消息内容
+                                    messageTextContainer.innerHTML = htmlContent;
+                                    
+                                    // 滚动到底部
+                                    const chatMessages = document.getElementById('chat-messages');
+                                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                                }
+                            }
+                        } catch (error) {
+                            console.warn('解析JSON数据失败:', error, line);
                         }
                     }
                 }
