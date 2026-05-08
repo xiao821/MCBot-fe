@@ -104,14 +104,43 @@ body {
   background-color: #f0f0f0;
 }
 
+.text-container {
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
 .text-container .text {
   font-size: 14px;
+  line-height: 1.6;
 }
 
-.text-container {
-  height: auto;
+.text-container .law-name {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
 }
 
+.text-container .chapter {
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.text-container .content {
+  color: #444;
+  text-indent: 2em;
+  margin-top: 5px;
+}
+
+.error {
+  color: #ff4444;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+}
 
 .chart-buttons {
   display: flex;
@@ -321,14 +350,14 @@ button {
 .user-message .message-content {
   padding: 10px;
   border-radius: 10px;
-  max-width: 70%; /* 限制消息的最大宽度 */
+  max-width: 90%; /* 限制消息的最大宽度 */
 }
 
 /* 机器人消息 */
 .bot-message {
   display: flex;
   justify-content: flex-start; /* 让内容向左对齐 */
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .bot-message .avatar {
@@ -338,7 +367,7 @@ button {
 .bot-message .message-content {
   padding: 10px;
   border-radius: 10px;
-  max-width: 70%;
+  max-width: 90%;
 }
 
 

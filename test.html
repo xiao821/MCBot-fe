@@ -40,13 +40,15 @@
         <!-- 随机题 -->
         <div class="grid-item">
             <div id="question-section" class="question-container" style="position: relative;">
-                <!-- 题目和刷新按钮 -->
+                <!-- 题目标题和刷新按钮 -->
                 <div class="question-header">
-                    <div id="question" class="question-text"></div>
-                    <button id="refresh-question" onclick="TestfetchRandomQuestion()" style="color: rgb(102, 102, 247);width: 70px;">
-                      <i class="fa fa-refresh"></i> 刷新
+                    <div id="question-title" class="question-title">题目</div>
+                    <button id="refresh-question" onclick="TestfetchRandomQuestion()" class="refresh-button">
+                        <i class="fa fa-refresh"></i> 刷新
                     </button>
                 </div>
+                <!-- 题目内容 -->
+                <div id="question" class="question-text"></div>
                 <!-- 选项区域 -->
                 <div id="options" class="options-list">
                 </div>
